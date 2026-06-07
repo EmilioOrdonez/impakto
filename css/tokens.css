@@ -1,0 +1,133 @@
+/* ============================================================
+   IMPAKTO — DESIGN TOKENS  v5
+   Edita solo este archivo para cambiar toda la paleta,
+   tipografía, espaciado y efectos del sitio.
+   ============================================================ */
+:root {
+
+  /* ── COLOR PRIMITIVES ─────────────────────────────────── */
+  --green-900: #0F2209;
+  --green-800: #1A3812;
+  --green-700: #2D5A1E;
+  --green-600: #3D7A28;
+  --green-500: #4E9A33;
+  --green-400: #6DBF45;
+  --green-300: #8CC63F;
+
+  --sand-100: #F2EFE8;
+  --sand-50:  #F9F7F4;
+
+  --ink-950: #0A0C09;
+  --ink-900: #111410;
+  --ink-800: #1C2118;
+  --ink-700: #2A2F24;
+  --ink-500: #5A5E56;
+  --ink-400: #6C6C70;
+  --ink-300: #9A9E96;
+  --ink-200: #AEAEB2;
+  --ink-100: #E5E0D8;
+
+  /* ── SEMANTIC ALIASES ─────────────────────────────────── */
+  --c-bg:        var(--sand-50);
+  --c-bg2:       #FFFFFF;
+  --c-surface:   var(--sand-100);
+  --c-dark:      var(--ink-900);
+  --c-dark2:     var(--ink-800);
+
+  --c-primary:   var(--green-700);
+  --c-primary-hv:var(--green-600);
+  --c-accent:    var(--green-500);
+  --c-lime:      var(--green-300);
+
+  --c-ink:       #1C1C1E;
+  --c-ink2:      var(--ink-500);
+  --c-ink3:      var(--ink-400);
+  --c-ink4:      var(--ink-200);
+
+  --c-border:    var(--ink-100);
+  --c-border-g:  rgba(45,90,30,.18);
+
+  /* ── TYPOGRAPHY ───────────────────────────────────────── */
+  --ff-serif: 'Playfair Display', Georgia, serif;
+  --ff-sans:  'Manrope', system-ui, sans-serif;
+
+  /* Scale (Major Third × 1.25) */
+  --text-2xs:  .65rem;
+  --text-xs:   .72rem;
+  --text-sm:   .82rem;
+  --text-base: .93rem;
+  --text-md:   1.05rem;
+  --text-lg:   1.25rem;
+  --text-xl:   1.5rem;
+  --text-2xl:  1.85rem;
+  --text-3xl:  clamp(2rem, 4vw, 3rem);
+  --text-4xl:  clamp(2.4rem, 4.5vw, 3.5rem);
+  --text-hero: clamp(2.8rem, 5.5vw, 5.2rem);
+
+  --lh-tight:  1.05;
+  --lh-snug:   1.2;
+  --lh-base:   1.6;
+  --lh-loose:  1.8;
+
+  /* ── SPACING SCALE (4px grid) ─────────────────────────── */
+  --sp-1:  .25rem;
+  --sp-2:  .5rem;
+  --sp-3:  .75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+  --sp-32: 8rem;
+
+  /* ── BORDER RADIUS ────────────────────────────────────── */
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   22px;
+  --r-2xl:  30px;
+  --r-full: 999px;
+
+  /* ── SHADOWS ──────────────────────────────────────────── */
+  --sh-xs:       0 1px 3px rgba(0,0,0,.06);
+  --sh-sm:       0 1px 4px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.04);
+  --sh-md:       0 4px 16px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.06);
+  --sh-lg:       0 8px 32px rgba(0,0,0,.12), 0 24px 64px rgba(0,0,0,.08);
+  --sh-xl:       0 20px 60px rgba(0,0,0,.18), 0 40px 100px rgba(0,0,0,.10);
+  --sh-green:    0 8px 32px rgba(45,90,30,.28), 0 2px 8px rgba(45,90,30,.15);
+  --sh-green-lg: 0 16px 48px rgba(45,90,30,.38), 0 4px 16px rgba(45,90,30,.2);
+
+  /* ── GRADIENTS ────────────────────────────────────────── */
+  --grad-green:   linear-gradient(135deg, var(--green-700) 0%, var(--green-500) 100%);
+  --grad-green-h: linear-gradient(135deg, var(--green-600) 0%, var(--green-400) 100%);
+  --grad-dark:    radial-gradient(ellipse 120% 80% at 65% 20%, #1A2014 0%, #111410 50%, #0C0E0A 100%);
+  --grad-accent:  linear-gradient(90deg, var(--green-700), var(--green-300));
+
+  /* ── TRANSITIONS ──────────────────────────────────────── */
+  --ease-spring: cubic-bezier(.16,1,.3,1);
+  --ease-out:    cubic-bezier(0,0,.2,1);
+  --ease-inout:  cubic-bezier(.4,0,.2,1);
+
+  --dur-fast:   .15s;
+  --dur-base:   .25s;
+  --dur-slow:   .45s;
+  --dur-slower: .75s;
+
+  /* ── LAYOUT ───────────────────────────────────────────── */
+  --max-w:        1200px;
+  --section-py:   8rem;
+  --section-py-sm:5rem;
+
+  /* ── Z-INDEX ──────────────────────────────────────────── */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-mob:     800;
+  --z-nav:     900;
+  --z-float:   999;
+}
