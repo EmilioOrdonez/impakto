@@ -105,21 +105,13 @@ const cntIO = new IntersectionObserver(entries => {
 }, {threshold: 0.6});
 document.querySelectorAll('[data-count]').forEach(el => cntIO.observe(el));
 
-// Hero title — stagger word animation
-/*(function(){
-  var ws = document.querySelectorAll('#heroTitle .w');
-  ws.forEach(function(w,i){ w.style.animationDelay = (0.15 + i*0.09) + 's'; });
-})();
-*/
-// ELIMINAR si existe — ya no se usa:
-/*(function(){
-  var ws = document.querySelectorAll('#heroTitle .w');
-  ws.forEach(function(w,i){ w.style.animationDelay = (0.15 + i*0.09) + 's'; });
-})();*/
+// Hero title — stagger word animation (legacy, disabled)
+// (old .w word-by-word code removed)
 
 /* ── REVEAL DEL TITULAR HERO ──────────────────────
-   Se reactiva: (a) al entrar en viewport por scroll,
-   (b) al hacer click en un enlace a #inicio/#hero.
+   Se reactiva: (a) al cargar la página,
+   (b) al entrar en viewport por scroll,
+   (c) al hacer click en un enlace a #inicio/#hero.
    ─────────────────────────────────────────────── */
 (function(){
   const title = document.getElementById('heroTitle');
@@ -132,13 +124,19 @@ document.querySelectorAll('[data-count]').forEach(el => cntIO.observe(el));
     title.classList.add('play');
   }
 
-  // (a) Reproducir cada vez que el hero entra en pantalla
+  // (a) Disparar inmediatamente al cargar (con pequeño delay para que
+  //     el CSS ya esté parseado y el layout estable)
+  setTimeout(play, 200);
+
+  // (b) Reproducir cada vez que el hero entra en pantalla por scroll
   const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) play(); });
-  },{threshold:0.4});
+    entries.forEach(e=>{
+      if(e.isIntersecting) play();
+    });
+  },{threshold:0.15});
   io.observe(title);
 
-  // (b) Reproducir al hacer click en enlaces hacia #inicio o #hero
+  // (c) Reproducir al hacer click en enlaces hacia #inicio o #hero
   document.querySelectorAll('a[href="#inicio"],a[href="#hero"]').forEach(a=>{
     a.addEventListener('click',()=>{
       // pequeño retraso para que primero llegue el scroll arriba
