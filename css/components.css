@@ -238,11 +238,31 @@ textarea.form-input { min-height:130px; resize:vertical }
 }
 
 /* ── REDUCED MOTION ─────────────────────────────────────── */
+/* Sólo desactivar animaciones decorativas, NO las funcionales
+   como el marquee o el reveal del hero. */
 @media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after {
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-  }
+  /* Decorativas: desactivar */
+  .hero-card-main img,
+  .hero-card-main::before,
+  .hero-eyebrow span,
+  .wa-ping,
+  .hero-text::before,
+  .btn-primary::before { animation:none !important }
+
+  /* Transiciones: hacer instantáneas */
+  .rev { transition-duration:.01ms !important }
+  .svc-card,
+  .caso-cell,
+  .proceso-step,
+  .stat-card,
+  .btn-primary,
+  .btn-ghost,
+  .btn-outline,
+  .nav-cta { transition-duration:.01ms !important }
+
+  /* Canvas 3D: ocultar */
   #bg3d { display:none }
+
+  /* Marquee: reducir velocidad en vez de matar */
+  .marquee-track { animation-duration:60s !important }
 }
