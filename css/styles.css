@@ -135,6 +135,38 @@
 }
 .hero-eyebrow span { width:6px; height:6px; border-radius:50%; background:var(--c-lime); animation:pulse 2s ease infinite }
 
+.hero-h1 .line{
+  display:block;
+  overflow:hidden;          /* la máscara: oculta el texto mientras está abajo */
+  padding-bottom:.08em;     /* evita que se corten colas de letras como la "y" o "j" */
+}
+.hero-h1 .line-inner{
+  display:block;
+  transform:translateY(110%);   /* arranca abajo, fuera de la ventana */
+  opacity:0;
+/*  animation:lineReveal 1s cubic-bezier(.16,1,.3,1) forwards; */
+}
+
+.hero-h1.play .line-inner{
+  animation:lineReveal 1s cubic-bezier(.16,1,.3,1) forwards;
+}
+/* Retraso escalonado: cada línea entra después de la anterior */
+.hero-h1 .line:nth-child(1) .line-inner{animation-delay:.15s}
+.hero-h1 .line:nth-child(2) .line-inner{animation-delay:.32s}
+.hero-h1 .line:nth-child(3) .line-inner{animation-delay:.49s}
+
+@keyframes lineReveal{
+  to{transform:translateY(0);opacity:1}
+}
+
+/* Respeto a accesibilidad: sin movimiento si el usuario lo pidió */
+@media(prefers-reduced-motion:reduce){
+  .hero-h1 .line-inner{
+    /*transform:none;opacity:1;animation:none;*/
+    transform:none;opacity:1
+  }
+}
+
 .hero-h1 {
   font-family:var(--ff-serif); font-size:var(--text-hero);
   font-weight:700; line-height:var(--lh-tight); color:#F5F3EE;

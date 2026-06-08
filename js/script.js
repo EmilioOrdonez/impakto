@@ -106,10 +106,47 @@ const cntIO = new IntersectionObserver(entries => {
 document.querySelectorAll('[data-count]').forEach(el => cntIO.observe(el));
 
 // Hero title — stagger word animation
-(function(){
+/*(function(){
   var ws = document.querySelectorAll('#heroTitle .w');
   ws.forEach(function(w,i){ w.style.animationDelay = (0.15 + i*0.09) + 's'; });
 })();
+*/
+// ELIMINAR si existe — ya no se usa:
+/*(function(){
+  var ws = document.querySelectorAll('#heroTitle .w');
+  ws.forEach(function(w,i){ w.style.animationDelay = (0.15 + i*0.09) + 's'; });
+})();*/
+
+/* ── REVEAL DEL TITULAR HERO ──────────────────────
+   Se reactiva: (a) al entrar en viewport por scroll,
+   (b) al hacer click en un enlace a #inicio/#hero.
+   ─────────────────────────────────────────────── */
+(function(){
+  const title = document.getElementById('heroTitle');
+  if(!title) return;
+
+  function play(){
+    title.classList.remove('play');
+    // forzar reflow para reiniciar la animación
+    void title.offsetWidth;
+    title.classList.add('play');
+  }
+
+  // (a) Reproducir cada vez que el hero entra en pantalla
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) play(); });
+  },{threshold:0.4});
+  io.observe(title);
+
+  // (b) Reproducir al hacer click en enlaces hacia #inicio o #hero
+  document.querySelectorAll('a[href="#inicio"],a[href="#hero"]').forEach(a=>{
+    a.addEventListener('click',()=>{
+      // pequeño retraso para que primero llegue el scroll arriba
+      setTimeout(play,500);
+    });
+  });
+})();
+
 
 // 3D tilt on cards — solo en dispositivos no táctiles
 var isTouch = window.matchMedia('(hover: none)').matches || 'ontouchstart' in window;
