@@ -37,7 +37,9 @@ sections.forEach(s => spyIO.observe(s));
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
+    const href = a.getAttribute('href');
+    if (!href || href === '#') return;
+    const t = document.querySelector(href);
     if (!t) return; e.preventDefault();
     window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth'});
   });
