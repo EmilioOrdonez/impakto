@@ -105,42 +105,41 @@ const cntIO = new IntersectionObserver(entries => {
 }, {threshold: 0.6});
 document.querySelectorAll('[data-count]').forEach(el => cntIO.observe(el));
 
-// Hero title — stagger word animation (legacy, disabled)
-// (old .w word-by-word code removed)
-
 /* ── REVEAL DEL TITULAR HERO ──────────────────────
-   Se reactiva: (a) al cargar la página,
-   (b) al entrar en viewport por scroll,
-   (c) al hacer click en un enlace a #inicio/#hero.
+   La animación se auto-ejecuta por CSS al cargar.
+   Este bloque sólo la REINICIA si el usuario
+   hace scroll lejos del hero y vuelve.
    ─────────────────────────────────────────────── */
 (function(){
   const title = document.getElementById('heroTitle');
   if(!title) return;
+  let hasLeft = false;  // controla si el hero salió del viewport
 
-  function play(){
-    title.classList.remove('play');
-    // forzar reflow para reiniciar la animación
+  function replay(){
+    // 1. Cortar la animación (clase .replay → animation:none)
+    title.classList.add('replay');
+    // 2. Forzar reflow
     void title.offsetWidth;
-    title.classList.add('play');
+    // 3. Quitar .replay → la animación CSS arranca de nuevo
+    title.classList.remove('replay');
   }
 
-  // (a) Disparar inmediatamente al cargar (con pequeño delay para que
-  //     el CSS ya esté parseado y el layout estable)
-  setTimeout(play, 200);
-
-  // (b) Reproducir cada vez que el hero entra en pantalla por scroll
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
-      if(e.isIntersecting) play();
+      if(!e.isIntersecting){
+        hasLeft = true;   // el hero salió de pantalla
+      } else if(hasLeft){
+        hasLeft = false;
+        replay();         // volvió: reiniciar animación
+      }
     });
   },{threshold:0.15});
   io.observe(title);
 
-  // (c) Reproducir al hacer click en enlaces hacia #inicio o #hero
+  // Replay al hacer click en enlaces hacia #inicio o #hero
   document.querySelectorAll('a[href="#inicio"],a[href="#hero"]').forEach(a=>{
     a.addEventListener('click',()=>{
-      // pequeño retraso para que primero llegue el scroll arriba
-      setTimeout(play,500);
+      setTimeout(replay, 500);
     });
   });
 })();

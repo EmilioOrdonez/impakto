@@ -144,16 +144,18 @@
   display:block;
   transform:translateY(110%);   /* arranca abajo, fuera de la ventana */
   opacity:0;
-/*  animation:lineReveal 1s cubic-bezier(.16,1,.3,1) forwards; */
-}
-
-.hero-h1.play .line-inner{
+  /* Animación auto-play al cargar — no depende de JS */
   animation:lineReveal 1s cubic-bezier(.16,1,.3,1) forwards;
 }
 /* Retraso escalonado: cada línea entra después de la anterior */
-.hero-h1.play .line:nth-child(1) .line-inner{animation-delay:.15s}
-.hero-h1.play .line:nth-child(2) .line-inner{animation-delay:.32s}
-.hero-h1.play .line:nth-child(3) .line-inner{animation-delay:.49s}
+.hero-h1 .line:nth-child(1) .line-inner{animation-delay:.15s}
+.hero-h1 .line:nth-child(2) .line-inner{animation-delay:.32s}
+.hero-h1 .line:nth-child(3) .line-inner{animation-delay:.49s}
+
+/* Clase .replay para reiniciar la animación por JS al hacer scroll */
+.hero-h1.replay .line-inner{
+  animation:none;
+}
 
 @keyframes lineReveal{
   to{transform:translateY(0);opacity:1}
@@ -162,8 +164,7 @@
 /* Respeto a accesibilidad: sin movimiento si el usuario lo pidió */
 @media(prefers-reduced-motion:reduce){
   .hero-h1 .line-inner{
-    /*transform:none;opacity:1;animation:none;*/
-    transform:none;opacity:1
+    transform:none;opacity:1;animation:none;
   }
 }
 
