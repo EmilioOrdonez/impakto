@@ -924,10 +924,11 @@
 }
 
 .svc-img {
-  border-radius: var(--r-lg);
+  border-radius: var(--r-md);
   overflow: hidden;
-  aspect-ratio: 1;
-  background: var(--c-surface)
+  aspect-ratio: 16/9;
+  background: var(--c-surface);
+  margin-bottom: 1.5rem;
 }
 
 .svc-img img {
