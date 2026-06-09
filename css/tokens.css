@@ -9,13 +9,13 @@
   --green-900: #0F2209;
   --green-800: #1A3812;
   --green-700: #2D5A1E;
-  --green-600: #3D7A28;
-  --green-500: #4E9A33;
-  --green-400: #6DBF45;
-  --green-300: #8CC63F;
+  --green-600: #3D9E22;
+  --green-500: #5AC235;
+  --green-400: #7AE62B;
+  --green-300: #AAFF00;
 
-  --sand-100: #F2EFE8;
-  --sand-50:  #F9F7F4;
+  --blue-100: #E4EBF5;
+  --blue-50:  #EEF3FA;
 
   --ink-950: #0A0C09;
   --ink-900: #111410;
@@ -25,12 +25,12 @@
   --ink-400: #6C6C70;
   --ink-300: #9A9E96;
   --ink-200: #AEAEB2;
-  --ink-100: #E5E0D8;
+  --ink-100: #D8DFE8;
 
   /* ── SEMANTIC ALIASES ─────────────────────────────────── */
-  --c-bg:        var(--sand-50);
+  --c-bg:        var(--blue-50);
   --c-bg2:       #FFFFFF;
-  --c-surface:   var(--sand-100);
+  --c-surface:   var(--blue-100);
   --c-dark:      var(--ink-900);
   --c-dark2:     var(--ink-800);
 
